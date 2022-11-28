@@ -1,7 +1,8 @@
 
 //cargando y exportando la data de airlines
 
-export const airlines = [{
+export const airlines = [
+    {
     IATA_CODE: 'UA' ,
     AIRLINE: 'United Air Lines Inc.' ,
 }, 

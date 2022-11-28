@@ -1,5 +1,5 @@
 import { request, response } from 'express'
-
+import Airport from '../models/airports.models.js'
 import { Airports } from '../data/airports-data'
 
 
@@ -45,6 +45,20 @@ export const postAirport = async (req = request, res = response) => {
 			msg: 'New airport created',
 			newAirport,
 		})
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({ msg: error })
+	}
+}
+
+
+//poblar base de datos
+export const addDataInDb = (req = request, res = response) => {
+	try {
+		airports.forEach(async (airport) => {
+			await Airport.create(airport)
+		})
+		res.status(201).json({ msg: 'Aggregated initial airports in database' })
 	} catch (error) {
 		console.log(error)
 		res.status(500).json({ msg: error })
