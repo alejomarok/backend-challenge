@@ -1,6 +1,11 @@
 import { request, response } from 'express'
-import Airline from '../models/airline.model.js'
-import { airlines } from '../data/airlines.data.js'
+import Airline from '../models/airlines.models.js'
+import { airlines } from '../data/airlines-data.js'
+
+
+
+
+
 
 
 
