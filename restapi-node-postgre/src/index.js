@@ -1,18 +1,4 @@
-const express = require('express');
-const app = express();
+import app from './app.js'
 
-
-
-//middlewares
-
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-
-
-
-
-//routes
-app.use(require('./routes/index'));
-
-app.listen(3000);
-console.log('server on port 3000'); 
+app.listen(3000) 
+console.log('server is listening on port', 3000)
