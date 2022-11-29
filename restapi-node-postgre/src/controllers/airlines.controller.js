@@ -3,8 +3,13 @@ import { request, response } from 'express'
 import  Airline  from '../models/airlines.models.js'
 import { airlines } from '../data/airlines-data.js'
 
-import dataAirlines from "../data/airlines.json" assert { type: "json" };
+import { readFile } from 'fs/promises';
 
+const dataAirlines = JSON.parse(
+    await readFile(
+      new URL("../data/airlines.json", import.meta.url)
+    )
+  );
 
 
 
