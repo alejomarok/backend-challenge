@@ -1,0 +1,1 @@
+go into the 'database' folder in the 'database.js' file and change the settings to your database's, then in the terminal enter the command 'npm run dev'

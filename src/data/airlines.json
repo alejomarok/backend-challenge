@@ -1,0 +1,73 @@
+
+[
+    {
+      "id": 1,
+      "IATA_CODE": "UA",
+      "AIRLINE": "United Air Lines Inc."
+    },
+    {
+      "id": 2,
+      "IATA_CODE": "AA",
+      "AIRLINE": "American Airlines Inc."
+    },
+    {
+      "id": 3,
+      "IATA_CODE": "US",
+      "AIRLINE": "US Airways Inc."
+    },
+    {
+      "id": 4,
+      "IATA_CODE": "F9",
+      "AIRLINE": "Frontier Airlines Inc."
+    },
+    {
+      "id": 5,
+      "IATA_CODE": "B6",
+      "AIRLINE": "JetBlue Airways"
+    },
+    {
+      "id": 6,
+      "IATA_CODE": "OO",
+      "AIRLINE": "Skywest Airlines Inc."
+    },
+    {
+      "id": 7,
+      "IATA_CODE": "AS",
+      "AIRLINE": "Alaska Airlines Inc."
+    },
+    {
+      "id": 8,
+      "IATA_CODE": "NK",
+      "AIRLINE": "Spirit Air Lines"
+    },
+    {
+      "id": 9,
+      "IATA_CODE": "WN",
+      "AIRLINE": "Southwest Airlines Co."
+    },
+    {
+      "id": 10,
+      "IATA_CODE": "DL",
+      "AIRLINE": "Delta Air Lines Inc."
+    },
+    {
+      "id": 11,
+      "IATA_CODE": "EV",
+      "AIRLINE": "Atlantic Southeast Airlines"
+    },
+    {
+      "id": 12,
+      "IATA_CODE": "HA",
+      "AIRLINE": "Hawaiian Airlines Inc."
+    },
+    {
+      "id": 13,
+      "IATA_CODE": "MQ",
+      "AIRLINE": "American Eagle Airlines Inc."
+    },
+    {
+      "id": 14,
+      "IATA_CODE": "VX",
+      "AIRLINE": "Virgin America"
+    }
+  ]
