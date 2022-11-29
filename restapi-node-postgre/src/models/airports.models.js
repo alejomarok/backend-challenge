@@ -24,3 +24,5 @@ export const Airports = sequelize.define('airports', {
 		type: DataTypes.FLOAT,
 	},
 })
+
+export default Airports; 

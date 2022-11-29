@@ -48,6 +48,7 @@ export const postFlight = async (req = request, res = response) => {
 }
 
 //poblar base de datos
+
 export const addDataInDb = async (req = request, res = response) => {
 	try {
 		flights.forEach(async (flight) => {
@@ -90,3 +91,4 @@ export const deleteFlight = async (req = request, res = response) => {
 		res.status(500).json({ msg: error })
 	}
 }
+

@@ -1,4 +1,4 @@
-const { Router } = require('express');
+import { Router } from 'express'
 
 
 
@@ -8,9 +8,8 @@ import {
     getByIdFlight, 
     getFlights, 
     postFlight, 
-    putFlight } from '../controllers/flights.controller.js'
+    putFlight } from '../controllers/flights.controllers.js'
 
-import { Router } from 'express'
 import { checkFlightId } from '../middlewares/middlewareId.js'
 
 const flightsRoutes = Router()

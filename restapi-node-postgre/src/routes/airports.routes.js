@@ -1,4 +1,4 @@
-const { Router } = require('express');
+import { Router } from 'express'
 
 
 import {
@@ -9,7 +9,7 @@ import {
     postAirport, 
     putAirport } from '../controllers/airports.controller.js'
 
-import { Router } from 'express'
+
 import { checkAirportId } from '../middlewares/middlewareId.js'
 
 const airportsRoutes = Router()

@@ -1,5 +1,9 @@
-const { Router } = require('express');
-const router = Router()
+import express from 'express'
+const router = express.Router()
+
+router.get('/', (req, res) => {
+    res.send('la conexion ha sido correcta')
+})
 
 
 import airlinesRoutes from './airlines.routes.js'
@@ -15,4 +19,5 @@ router.use('/flight', flightsRoutes)
 
 
 
-module.exports = router;
+
+export default router;

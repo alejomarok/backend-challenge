@@ -10,3 +10,5 @@ export const Airline = sequelize.define('airlines', {
 	}, 
 },
 );
+
+export default Airline; 

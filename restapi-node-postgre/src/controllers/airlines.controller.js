@@ -1,17 +1,9 @@
 import { request, response } from 'express'
-import Airline from '../models/airlines.models.js'
+
+import { Airline } from '../models/airlines.models.js'
 import { airlines } from '../data/airlines-data.js'
 
-
-
-
-
-
-
-
-
-//metodo get para obtener la data
-export const getAirlines = async (req = request, res = response) => {
+ export const getAirlines = async (req = request, res = response) => {
 	try {
 		const airlines = await Airline.findAll()
 		res.status(200).json({ airlines })
@@ -21,8 +13,6 @@ export const getAirlines = async (req = request, res = response) => {
 	}
 }
 
-
-//get por id
 export const getByIdAirline = async (req = request, res = response) => {
 	const { id } = req.params
 	try {
@@ -34,9 +24,6 @@ export const getByIdAirline = async (req = request, res = response) => {
 		res.status(500).json({ msg: error })
 	}
 }
-
-
-//postAirline
 
 export const postAirline = async (req = request, res = response) => {
 	const { IATA_CODE, AIRLINE } = req.body
@@ -56,7 +43,6 @@ export const postAirline = async (req = request, res = response) => {
 	}
 }
 
-//poblar database
 export const addDataInDb = async (req = request, res = response) => {
 	try {
 		airlines.forEach(async (airline) => {
@@ -68,8 +54,6 @@ export const addDataInDb = async (req = request, res = response) => {
 		res.status(500).json({ msg: error })
 	}
 }
-
-//actualizar
 
 export const putAirline = async (req = request, res = response) => {
 	const { id } = req.params
@@ -87,10 +71,6 @@ export const putAirline = async (req = request, res = response) => {
 	}
 }
 
-
-
-//Borrar 
-
 export const deleteAirline = async (req = request, res = response) => {
 	const { id } = req.params
 	try {
@@ -103,3 +83,5 @@ export const deleteAirline = async (req = request, res = response) => {
 		res.status(500).json({ msg: error })
 	}
 }
+
+

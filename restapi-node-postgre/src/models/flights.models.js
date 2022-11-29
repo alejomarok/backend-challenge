@@ -96,3 +96,6 @@ export const Flight = sequelize.define('flights', {
 		type: DataTypes.TEXT,
 	},
 })
+
+
+export default Flight; 

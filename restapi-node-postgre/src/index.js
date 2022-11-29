@@ -6,7 +6,8 @@ import './models/airports.models.js';
 import './models/flights.models.js';
 
 
-
+import routes from './routes/index.js'
+app.use(routes)
 
 
 async function main () {

@@ -1,6 +1,3 @@
-
-//cargando y exportando la data de airlines
-
 export const airlines = [
     {
     IATA_CODE: 'UA' ,
