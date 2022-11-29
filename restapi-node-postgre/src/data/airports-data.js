@@ -1,6 +1,3 @@
-//cargando y exportando la data de airports
-
-
 export const airports = [
 	{
 		IATA_CODE: 'ABE',

@@ -1,47 +1,53 @@
 import { request, response } from 'express'
 
-import { Airline } from '../models/airlines.models.js'
+import  Airline  from '../models/airlines.models.js'
 import { airlines } from '../data/airlines-data.js'
 
+import dataAirlines from "../data/airlines.json" assert { type: "json" };
+
+
+
+
  export const getAirlines = async (req = request, res = response) => {
-	try {
-		const airlines = await Airline.findAll()
-		res.status(200).json({ airlines })
+	try {        
+
+		res.json(dataAirlines);
+
 	} catch (error) {
-		console.log(error)
+		console.log('failed')
 		res.status(500).json({ msg: error })
 	}
 }
 
 export const getByIdAirline = async (req = request, res = response) => {
 	const { id } = req.params
-	try {
-		const airline = await Airline.findByPk(id)
-
-		res.status(200).json({ airline })
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
+    if (id) {
+        _.each(dataAirlines, (airline, i) => {
+            if (airline.id === id) {
+            }
+        });
+        res.json(dataAirlines);
+    } else {
+        res.status(500).json({error: 'There was an error.'});
+    }
 }
 
 export const postAirline = async (req = request, res = response) => {
-	const { IATA_CODE, AIRLINE } = req.body
-	try {
-		const airline = await Airline.findOne({ where: { AIRLINE } })
-		if (airline) {
-			return res.status(400).json({ msg: 'This airline is already registered' })
-		}
-		const newAirline = await Airline.create({ IATA_CODE, AIRLINE })
-		res.status(200).json({
-			msg: 'New airline created',
-			newAirline,
-		})
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
-}
+    const id = dataAirlines.length + 1;
+    const { IATA_CODE, AIRLINE } = req.body;
+    const newdataAirlines = { ...req.body, id };
+    if (id && IATA_CODE && AIRLINE) {
+        dataAirlines.push(newdataAirlines);
+        res.json(dataAirlines);
+    } else {
+        res.status(500).json({error: 'There was an error.'});
+    }
+};
+
+
+
+
+
 
 export const addDataInDb = async (req = request, res = response) => {
 	try {
@@ -55,33 +61,32 @@ export const addDataInDb = async (req = request, res = response) => {
 	}
 }
 
-export const putAirline = async (req = request, res = response) => {
-	const { id } = req.params
-	try {
-		const airline = await Airline.findByPk(id)
-		await airline.update(req.body)
+export const putAirline = async (req = request, res = response) =>  {
+    const { id } = req.params;
+    const { IATA_CODE, AIRLINE } = req.body;
+    if (id && IATA_CODE && AIRLINE) {
+        _.each(dataAirlines, (airline, i) => {
+            if (airline.id === id) {
+                airline.IATA_CODE = IATA_CODE;
+                airline.AIRLINE = AIRLINE;
 
-		res.status(200).json({
-			msg: 'Airline successfully upgraded',
-			airline,
-		})
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
-}
+            }
+        });
+        res.json(dataAirlines);
+    } else {
+        res.status(500).json({error: 'There was an error.'});
+    }
+};
 
 export const deleteAirline = async (req = request, res = response) => {
-	const { id } = req.params
-	try {
-		const airline = await Airline.findByPk(id)
-
-		await airline.destroy()
-		res.status(200).json({ msg: 'Airline successfully eliminated' })
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
+    const {id} = req.params;
+    if (id) {
+        _.each(dataAirlines, (airline, i) => {
+            if (airline.id == id) {
+                airline.splice(i, 1);
+            }
+        });
+        res.json(dataAirlines);
+    }
 }
-
 

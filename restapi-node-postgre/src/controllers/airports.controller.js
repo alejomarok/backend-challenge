@@ -4,47 +4,51 @@ import { airports } from '../data/airports-data.js'
 
 
 
+import dataAirports from "../data/airports.json" assert { type: "json" };
+
+
+
 
 export const getAirports = async (req = request, res = response) => {
-	try {
-		const airports = await Airport.findAll()
-		res.status(200).json({ airports })
+	try {        
+
+		res.json(dataAirports);
+
 	} catch (error) {
-		console.log(error)
+		console.log('failed')
 		res.status(500).json({ msg: error })
 	}
 }
 
 export const getByIdAirport = async (req = request, res = response) => {
 	const { id } = req.params
-	try {
-		const airport = await Airport.findByPk(id)
-		res.status(200).json({ airport })
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
+    if (id) {
+        _.each(dataAirports, (airport, i) => {
+            if (airport.id === id) {
+            }
+        });
+        res.json(dataAirports);
+    } else {
+        res.status(500).json({error: 'There was an error.'});
+    }
 }
 
 export const postAirport = async (req = request, res = response) => {
-	const { IATA_CODE, AIRPORT, CITY, STATE, COUNTRY, LATITUDE, LONGITUDE } = req.body
-	try {
-		const airport = await Airport.findOne({ where: { AIRPORT } })
-		if (airport) {
-			return res.status(401).json({ msg: 'This Airport is already registered' })
-		}
+    const id = dataAirports.length + 1;
+    const { IATA_CODE, AIRPORT, CITY, STATE, COUNTRY, LATITUDE,LONGITUDE } = req.body;
+    const newdataAirports = { ...req.body, id };
+    if (id && IATA_CODE && AIRPORT && CITY && STATE && COUNTRY && LATITUDE && LONGITUDE) {
+        dataAirports.push(newdataAirports);
+        res.json(dataAirports);
+    } else {
+        res.status(500).json({error: 'There was an error.'});
+    }
+};
 
-		const newAirPort = await Airport.create({ IATA_CODE, AIRPORT, CITY, STATE, COUNTRY, LATITUDE, LONGITUDE })
 
-		res.status(201).json({
-			msg: 'New Airport created',
-			newAirPort,
-		})
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
-}
+
+
+
 
 export const addDataInDb = (req = request, res = response) => {
 	try {
@@ -58,31 +62,36 @@ export const addDataInDb = (req = request, res = response) => {
 	}
 }
 
-export const putAirport = async (req = request, res = response) => {
-	const { id } = req.params
-	try {
-		const airport = await Airport.findByPk(id)
-		await airport.update(req.body)
-
-		res.status(200).json({
-			msg: 'Airport successfully upgraded',
-			airport,
-		})
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
-}
+export const putAirport = async (req = request, res = response) =>  {
+    const { id } = req.params;
+    const { IATA_CODE, AIRPORT, CITY, STATE, COUNTRY, LATITUDE,LONGITUDE } = req.body;
+    if (id && IATA_CODE && AIRPORT && CITY && STATE && COUNTRY && LATITUDE && LONGITUDE) {
+        _.each(dataAirports, (airport, i) => {
+            if (airport.id === id) {
+                airport.IATA_CODE = IATA_CODE;
+                airport.AIRPORT = AIRPORT;
+                airport.CITY = CITY;
+                airport.STATE = STATE;
+                airport.COUNTRY = COUNTRY;
+                airport.LATITUDE = LATITUDE;
+                airport.LONGITUDE = LONGITUDE;
+            }
+        });
+        res.json(dataAirports);
+    } else {
+        res.status(500).json({error: 'There was an error.'});
+    }
+};
 
 export const deleteAirport = async (req = request, res = response) => {
-	const { id } = req.params
-	try {
-		const airport = await Airport.findByPk(id)
-		await airport.destroy()
-
-		res.status(200).json({ msg: 'Airport successfully eliminated' })
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ msg: error })
-	}
+    const {id} = req.params;
+    if (id) {
+        _.each(dataAirports, (airport, i) => {
+            if (airport.id == id) {
+                airport.splice(i, 1);
+            }
+        });
+        res.json(dataAirports);
+    }
 }
+

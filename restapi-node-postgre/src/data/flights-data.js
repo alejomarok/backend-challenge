@@ -1,7 +1,3 @@
-//cargando y exportando la data de airports
-
-
-
 export const flights = [
 	{
 		YEAR: 2015,
